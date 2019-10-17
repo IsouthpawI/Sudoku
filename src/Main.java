@@ -1,11 +1,24 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     static final int N = 9;
 
     public static void main(String[] args) {
 
-//        String sudo = "100026039008700601000000200400900516000000000796004008009000000301002900640180003";
+        int[] numbers = new int[81];
+
+        String numberStrs = "100026039008700601000000200400900516000000000796004008009000000301002900640180003";
+
+        int index = 0;
+        for(int i = 0;i < numberStrs.length();i++)
+        {
+                numbers[index] = Integer.parseInt(String.valueOf(numberStrs.charAt(i)));
+                System.out.println(numbers[index]);
+                index++;
+        }
+
+        numbers = Arrays.copyOf(numbers, index);
 
 //        int[][] testgrid =   {{3,0,6,5,0,8,4,0,0},
 //                {5,2,0,0,0,0,0,0,0},
@@ -30,15 +43,18 @@ public class Main {
         System.out.println();
         System.out.println("Before");
         printGame(newgrid);
+//        printGame(numbers);
 
         solvePuzzle(newgrid);
+//        solvePuzzle(numbers);
 
         System.out.println();
         System.out.println("After");
         printGame(newgrid);
+//        printGame(numbers);
     }
 
-    public static boolean solvePuzzle (int[][] grid)
+    private static boolean solvePuzzle (int[][] grid)
     {
         int row = 0;
         int column = 0;
@@ -50,7 +66,7 @@ public class Main {
                 for (column = 0; column < N; column ++){
                     if (grid[row][column] == 0) {
                         puzzleSolved = false;
-                        break findLocation;
+                            break findLocation;
                     }
                 }
             }
@@ -76,14 +92,14 @@ public class Main {
         return false;
     }
 
-    public static boolean isSafe (int[][] grid, int number, int row, int column)
+    private static boolean isSafe (int[][] grid, int number, int row, int column)
     {
         return !usedInRow(grid,number,row) &&
                 !usedInColumn(grid,number,column) &&
                 !usedInBox(grid,row - row%3,column - column%3,number);
     }
 
-    public static boolean usedInRow (int[][] grid, int number, int row)
+    private static boolean usedInRow (int[][] grid, int number, int row)
     {
         for (int column = 0; column < N; column++){
             if(grid[row][column] == number){
@@ -93,7 +109,7 @@ public class Main {
         return false;
     }
 
-    public static boolean usedInColumn (int[][] grid, int number,int column)
+    private static boolean usedInColumn (int[][] grid, int number,int column)
     {
         for (int row = 0; row < N; row++){
             if (grid[row][column] == number){
@@ -103,7 +119,7 @@ public class Main {
         return false;
     }
 
-    public static boolean usedInBox (int[][] grid,int boxStartRow, int boxStartColumn, int number)
+    private static boolean usedInBox (int[][] grid,int boxStartRow, int boxStartColumn, int number)
     {
         for (int row = 0; row < 3; row++){
             for (int column = 0; column < 3; column++){
