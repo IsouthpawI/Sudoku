@@ -4,22 +4,13 @@ public class Main {
     public static void main(String[] args) {
 
         int[][] numbers = new int[9][9];
-
+        int counter1;
         String numberStrs = "100026039008700601000000200400900516000000000796004008009000000301002900640180003";
-        int counter = 0;
+        int counter = 8;
         for (int i = 0; i < 9; i++) {
+            counter1 = counter * i + i;
             for (int j = 0; j < 9; j++) {
-                if (counter > 8) {
-                    numbers[i][j] = Integer.parseInt(String.valueOf(numberStrs.charAt(j + counter)));
-                } else {
-
-                    numbers[i][j] = Integer.parseInt(String.valueOf(numberStrs.charAt(j)));
-                }
-
-
-                if (counter < 72) {
-                    counter++;
-                }
+                numbers[i][j] = Integer.parseInt(String.valueOf(numberStrs.charAt(j + counter1)));
             }
         }
 
@@ -34,28 +25,16 @@ public class Main {
 //                {0,0,0,0,0,0,0,7,4},
 //                {0,0,5,2,0,6,3,0,0}};
 
-        int[][] newgrid = {{1, 0, 0, 0, 2, 6, 0, 3, 9},
-                {0, 0, 8, 7, 0, 0, 6, 0, 1},
-                {0, 0, 0, 0, 0, 0, 2, 0, 0},
-                {4, 0, 0, 9, 0, 0, 5, 1, 6},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {7, 9, 6, 0, 0, 4, 0, 0, 8},
-                {0, 0, 9, 0, 0, 0, 0, 0, 0},
-                {3, 0, 1, 0, 0, 2, 9, 0, 0},
-                {6, 4, 0, 1, 8, 0, 0, 0, 3}};
 
         System.out.println();
         System.out.println("Before");
-        printGame(newgrid);
         System.out.println();
         printGame(numbers);
 
-        solvePuzzle(newgrid);
         solvePuzzle(numbers);
 
         System.out.println();
         System.out.println("After");
-        printGame(newgrid);
         System.out.println();
         printGame(numbers);
     }
